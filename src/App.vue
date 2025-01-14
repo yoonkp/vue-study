@@ -1,4 +1,5 @@
 <template>
+  <Event :text="text" />
   <Navbar />
   <Movies
     :data="data"
@@ -6,6 +7,7 @@
       isModal = true;
       selectedMovie = $event;
     "
+    @addLike="addLike($event)"
   />
   <!--
     Movies 컴포넌트를 불러올 때, props로 data를 전달합니다.
@@ -23,6 +25,7 @@ import data from "./assets/movies";
 import Movies from "./components/Movies.vue";
 import Navbar from "./components/Navbar.vue";
 import Modal from "./components/Modal.vue";
+import Event from "./components/Event.vue";
 console.log(data);
 export default {
   name: "App",
@@ -31,6 +34,7 @@ export default {
       isModal: false,
       data: data,
       selectedMovie: 0,
+      text: "이벤트입니다.",
     };
   },
   methods: {
@@ -42,6 +46,7 @@ export default {
     Navbar: Navbar,
     Modal: Modal,
     Movies: Movies,
+    Event: Event,
   },
 };
 </script>

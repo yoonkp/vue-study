@@ -9,7 +9,7 @@
         <h3 class="bg-yellow" :style="textRed">{{ movie.title }}</h3>
         <p>개봉: {{ movie.year }}</p>
         <p>장르: {{ movie.category }}</p>
-        <button @:click="addLike(i)">좋아요</button><span>{{ movie.like }}</span>
+        <button @:click="$emit('addLike', i)">좋아요</button><span>{{ movie.like }}</span>
         <div>
           <button @:click="$emit('openModal', i)">상세보기</button>
           <!-- $emit('openModal', i)을 통해 부모 컴포넌트에 이벤트를 전달합니다. -->
