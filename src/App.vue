@@ -1,6 +1,7 @@
 <template>
-  <Event :text="text" />
   <Navbar />
+  <Event :text="text" />
+  <SearchBar :data="data" />
   <Movies
     :data="data"
     @openModal="
@@ -26,7 +27,7 @@ import Movies from "./components/Movies.vue";
 import Navbar from "./components/Navbar.vue";
 import Modal from "./components/Modal.vue";
 import Event from "./components/Event.vue";
-console.log(data);
+import SearchBar from "./components/SearchBar.vue";
 export default {
   name: "App",
   data() {
@@ -47,6 +48,7 @@ export default {
     Modal: Modal,
     Movies: Movies,
     Event: Event,
+    SearchBar: SearchBar,
   },
 };
 </script>
