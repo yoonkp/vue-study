@@ -4,6 +4,7 @@
       type="search"
       placeholder="검색어를 입력하세요"
       @change="
+        $emit('searchMovie', $event.target.value);
         inputText = $event.target.value;
         $event.target.value = '';
       "
