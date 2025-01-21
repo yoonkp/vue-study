@@ -1,6 +1,7 @@
 <template>
   <Navbar />
-  <Event :text="text" />
+  <Event :text="text[eventTextNum]" />
+  {{ eventTextNum }}
   <SearchBar :data="data_temp" @searchMovie="searchMovie($event)" />
   <div>
     <button @click="showAll">전체보기</button>
@@ -39,12 +40,19 @@ export default {
       data: data, // 원본 data
       data_temp: [...data], // 사본 data (얕은 복사)
       selectedMovie: 0,
-      text: "이벤트입니다.",
+      text: ["이터널 선샤인 (2024)", "인셉션 (2010)"],
+      eventTextNum: 0,
+      interval: null,
     };
   },
   methods: {
-    addLike(i) {
-      this.data[i].like++;
+    addLike(id) {
+      // this.data[i].like++;
+      this.data.find((movie) => {
+        if (movie.id === id) {
+          movie.like += 1;
+        }
+      });
     },
     searchMovie(title) {
       // 영화제목이 포함된 데이터를 가져옴
@@ -62,6 +70,18 @@ export default {
     Movies: Movies,
     Event: Event,
     SearchBar: SearchBar,
+  },
+  // mounted: 컴포넌트가 DOM에 추가된 후 호출되는 라이프사이클 훅
+  mounted() {
+    console.log(this.data);
+
+    this.interval = setInterval(() => {
+      this.eventTextNum === this.text.length - 1 ? (this.eventTextNum = 0) : (this.eventTextNum += 1);
+    }, 3000);
+  },
+  // unmounted: 컴포넌트가 제거되기 전에 호출되는 라이프사이클 훅
+  unmounted() {
+    clearInterval(this.interval); // 종료될 때 interval 해제
   },
 };
 </script>
